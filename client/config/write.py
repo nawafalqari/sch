@@ -6,7 +6,7 @@ def write_default():
             "host": "ws://localhost:5555/ws"
         },
         "client": {
-            "icon_path": "icon.ico"
+            "icon_path": "assets/icon.ico"
         }
     }
 
