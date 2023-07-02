@@ -1,0 +1,33 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1005 1005">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #000;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke-width: 40px;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #fff;
+      }
+
+      .cls-3 {
+        font-size: 411.5px;
+        fill: #fff;
+        stroke-width: 0.25px;
+        font-family: OCRAExtended, OCR A Extended;
+        letter-spacing: -0.05em;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="0.5" y="0.5" width="1004" height="1004"/>
+  <path id="Text_Cloud" data-name="Text Cloud" class="cls-2" d="M852,511.75c0,159.61-157.59,289-352,289a462.44,462.44,0,0,1-104.66-11.56,36.21,36.21,0,0,0-12.85,7.06c-17,14-37,35-116.5,41.5,0,0,40.33-36.55,51.87-75.23C211.26,712.21,148,617.64,148,511.75c0-159.61,157.59-289,352-289S852,352.14,852,511.75Z" transform="translate(0 0)"/>
+  <text class="cls-3" transform="translate(239.72 619.52)">&gt;_</text>
+</svg>

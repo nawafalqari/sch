@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onedir --windowed --add-data "C:\Users\nawaf\Desktop\sch\venv\Lib\site-packages\customtkinter;customtkinter" --icon icon.ico client.py
