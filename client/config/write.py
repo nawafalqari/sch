@@ -3,7 +3,7 @@ import configparser
 def write_default():
     default_data = {
         "server": {
-            "host": "ws://localhost:5555/ws"
+            "host": "ws://sch.nawafdev.com/ws"
         },
         "client": {
             "icon_path": "assets/icon.ico"
