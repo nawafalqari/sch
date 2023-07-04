@@ -15,8 +15,9 @@ class RoomPicker(customtkinter.CTk):
         self.loop = loop
         self.room_code = None
         loop.run_until_complete(server.connect())
-        customtkinter.set_appearance_mode("System")
-        customtkinter.set_default_color_theme("blue")
+        customtkinter.set_appearance_mode("dark")
+
+        customtkinter.set_default_color_theme("blue" if read_config()["client"]["theme"] == "Blue" else "sch-theme.json")
 
         super().__init__()
 

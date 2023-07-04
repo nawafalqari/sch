@@ -11,11 +11,11 @@ class Settings(customtkinter.CTkToplevel):
         self.config = read_config()
 
         self.title("SCH - Settings")
-        self.geometry("400x200")
+        self.geometry("300x250")
         self.resizable(False, False)
         self.after(250, lambda: self.iconbitmap(self.config['client']['icon_path']))
 
-        self.settings_frame = customtkinter.CTkFrame(self, width=300, height=100, corner_radius=10, fg_color="transparent")
+        self.settings_frame = customtkinter.CTkFrame(self, width=300, height=150, corner_radius=10, fg_color="transparent")
 
         self.host_input = customtkinter.CTkEntry(self.settings_frame, width=200, height=40, corner_radius=10, placeholder_text="Host:")
         self.host_input.insert(0, self.config["server"]["host"])
@@ -26,9 +26,13 @@ class Settings(customtkinter.CTkToplevel):
             self.nickname_input.insert(0, self.config["client"]["nickname"])
         self.nickname_input.pack(pady=5)
 
+        self.theme_select = customtkinter.CTkOptionMenu(self.settings_frame, width=200, height=40, corner_radius=10, values=["SCH", "Blue"], command=self.update_theme)
+        self.theme_select.set(self.config["client"]["theme"])
+        self.theme_select.pack(pady=5)
+
         self.options_frame = customtkinter.CTkFrame(self.settings_frame, width=300, height=100, corner_radius=10, fg_color="transparent")
 
-        self.cancel_btn = customtkinter.CTkButton(self.options_frame, text="Cancel", width=60, height=40, corner_radius=10, fg_color="transparent", border_width=2, command=self.destroy)
+        self.cancel_btn = customtkinter.CTkButton(self.options_frame, text="Cancel", width=60, height=40, corner_radius=10, fg_color="transparent", text_color="white", hover_color="black",  border_width=2, command=self.destroy)
         self.cancel_btn.grid(row=0, column=0, padx=5)
 
         self.save_btn = customtkinter.CTkButton(self.options_frame, text="Save", width=60, height=40, corner_radius=10, command=self.save_callback)
@@ -51,12 +55,17 @@ class Settings(customtkinter.CTkToplevel):
             "host": self.host_input.get()
         },
         client={
-            "nickname": self.nickname_input.get()
-        } if self.nickname_input.get() else {
-            "nickname": ""
+            "theme": self.theme_select.get(),
+            "nickname": self.nickname_input.get() if self.nickname_input.get() else ""
         })
 
         self.destroy()
+
+    def update_theme(self, choice):
+        if choice == "SCH":
+            customtkinter.set_default_color_theme("sch-theme.json")
+        elif choice == "Blue":
+            customtkinter.set_default_color_theme("blue")
     
     def reload_config(self):
         self.config = read_config()

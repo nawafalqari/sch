@@ -6,7 +6,8 @@ def write_default():
             "host": "ws://sch.nawafdev.com/ws"
         },
         "client": {
-            "icon_path": "assets/icon.ico"
+            "icon_path": "icon.ico",
+            "theme": "SCH"
         }
     }
 
