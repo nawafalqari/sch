@@ -34,9 +34,9 @@ python sch.py
 2. Extract the contents of the zipped file.
 3. Run the `sch.exe` executable file to launch the SCH application.
 
-## Contributing
+<!-- ## Contributing
 
-We welcome contributions from the open-source community to help improve SCH. If you're interested in contributing, please follow our [contribution guidelines](CONTRIBUTING.md) to get started.
+We welcome contributions from the open-source community to help improve SCH. If you're interested in contributing, please follow our [contribution guidelines](CONTRIBUTING.md) to get started. -->
 
 
 ## Contact
