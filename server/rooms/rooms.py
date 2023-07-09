@@ -1,4 +1,5 @@
 from ..connmanager import ConnectionManager
+from ..encryption import generate_key
 
 class Rooms:
     def __init__(self):
@@ -25,3 +26,4 @@ class Room:
     def __init__(self, room_code: str):
         self.room_code = room_code
         self.connections = ConnectionManager()
+        self.secret_key = generate_key()

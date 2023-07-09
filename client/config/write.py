@@ -1,15 +1,17 @@
 import configparser
 
-def write_default():
-    default_data = {
-        "server": {
-            "host": "ws://sch.nawafdev.com/ws"
-        },
-        "client": {
-            "icon_path": "icon.ico",
-            "theme": "SCH"
-        }
+default_data = {
+    "server": {
+        "host": "ws://sch.nawafdev.com/ws",
+        "version": "1.0.0-beta3"
+    },
+    "client": {
+        "icon_path": "icon.ico",
+        "theme": "SCH"
     }
+}
+
+def write_default():
 
     config = configparser.ConfigParser()
 

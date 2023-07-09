@@ -14,3 +14,11 @@ class SystemAction(Response):
             "after_message": after_message,
             **kwargs
         }
+
+class SystemExit(Response):
+    def __init__(self, reason: str):
+        self.data = {
+            "type": "system.action",
+            "action": "exit",
+            "reason": reason
+        }

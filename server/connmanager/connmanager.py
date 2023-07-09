@@ -1,5 +1,5 @@
 from fastapi import WebSocket
-from ..response import Message, System, Response
+from ..response import Message, System, SystemAction, Response
 from ..utils.nickname import check_nickname
 
 # TODO: fix same nickname bug
@@ -16,6 +16,7 @@ class ConnectionManager:
         conn = Connection(ws, nickname)
 
         self.connections.append(conn)
+
         await self.broadcast(System(f"{nickname} joined the room."))
 
     async def disconnect(self, ws: WebSocket):

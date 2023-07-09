@@ -1,9 +1,9 @@
 from fastapi import WebSocket, WebSocketDisconnect
 from ..rooms import rooms
-from ..response import Message, System
+from ..response import Message, System, SystemAction, SystemExit
 from ..cmd import commands
 
-async def connection_handler(ws: WebSocket):
+async def connection_handler(ws: WebSocket, sysdata: dict = {}):
     try:
         while True:
             data = await ws.receive_json()
@@ -12,10 +12,16 @@ async def connection_handler(ws: WebSocket):
 
             match data["type"]:
                 case "room_join":
+                    if data["version"] != sysdata.get("version"):
+                        await ws.send_json(SystemExit(f"version mismatch, please install SCH version {sysdata['version']}").to_dict())
+                        await ws.close()
+                        return
+                    
                     room_code: str = data["room_code"]
                     room = rooms.find_room(room_code)
 
                     await room.connections.connect(ws, data)
+                    await room.connections.send(ws, SystemAction("setup", enckey=room.secret_key.decode("utf-8"), nickname=room.connections.get_connection(ws).nickname))
                 case "message":
                     message_content = data["content"]
                     room_code = data["room_code"]

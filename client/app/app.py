@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import customtkinter
 import json
 import asyncio
@@ -6,6 +7,7 @@ import websockets.exceptions
 import threading
 from ..comm import server
 from ..config import read_config
+from ..encryption import encrypt, decrypt
 
 class App(customtkinter.CTk):
     def __init__(self, loop: asyncio.AbstractEventLoop, room_code: str):
@@ -24,6 +26,12 @@ class App(customtkinter.CTk):
         self.messages_frame = customtkinter.CTkScrollableFrame(self, width=350, height=370, corner_radius=10)
         self.messages_frame.pack(padx=10, pady=10, expand=True, fill=tk.BOTH)
 
+        self.receiver_thread = threading.Thread(
+            target=lambda: loop.run_until_complete(self.receive_messages()),
+            daemon=True
+        ) 
+        self.receiver_thread.start()
+
         self.input_frame = customtkinter.CTkFrame(self, width=350, height=100, corner_radius=10, fg_color="transparent")
 
         self.msg_input = customtkinter.CTkEntry(self.input_frame, width=285, height=45, corner_radius=10, placeholder_text="Type your message here...")
@@ -35,12 +43,6 @@ class App(customtkinter.CTk):
         self.input_frame.pack(padx=10, pady=10)
 
         self.bind("<Return>", lambda _: loop.run_until_complete(self.send_callback()))
-
-        self.receiver_thread = threading.Thread(
-            target=lambda: loop.run_until_complete(self.receive_messages()),
-            daemon=True
-        ) 
-        self.receiver_thread.start()
     
     async def send_callback(self):
         text = self.msg_input.get()
@@ -50,9 +52,10 @@ class App(customtkinter.CTk):
 
         self.msg_input.delete(0, tk.END)
 
+        message = encrypt(text, self.secret_key).decode("utf-8")
         await server.server.send(json.dumps({
             "type": "message",
-            "content": text,
+            "content": message,
             "room_code": self.room_code
         }))
 
@@ -64,7 +67,8 @@ class App(customtkinter.CTk):
 
                 match data["type"]:
                     case "message":
-                        msg_widget = customtkinter.CTkLabel(self.messages_frame, text=data["content"], wraplength=330,
+                        message = decrypt(data["content"], self.secret_key)
+                        msg_widget = customtkinter.CTkLabel(self.messages_frame, text=message, wraplength=330,
                                                             text_color="lightblue" if data.get("whisper") else None)
                         msg_widget.pack(anchor=tk.W)
 
@@ -76,6 +80,12 @@ class App(customtkinter.CTk):
                         self.messages_frame._parent_canvas.yview("scroll", int(2500 / 6), "units")
                     case "system.action":
                         match data["action"]:
+                            case "setup":
+                                self.title(f"SCH - Client ({data['nickname']})")
+                                self.secret_key = data["enckey"].encode("utf-8")
+                            case "exit":
+                                messagebox.showerror("Error", data["reason"])
+                                self.destroy()
                             case _:
                                 pass
 

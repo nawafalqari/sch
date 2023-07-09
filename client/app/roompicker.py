@@ -70,7 +70,8 @@ class RoomPicker(customtkinter.CTk):
             await server.server.send(json.dumps({
                 "type": "room_join",
                 "room_code": self.room_code,
-                "nickname": nickname
+                "nickname": nickname,
+                "version": read_config()["server"]["version"]
             }))
 
             self.open_app()

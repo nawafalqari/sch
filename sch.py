@@ -1,9 +1,10 @@
-import client
 import asyncio
 import nest_asyncio
+from client import RoomPicker
 
 nest_asyncio.apply()
 
-event_loop = asyncio.get_event_loop()
-app = client.RoomPicker(event_loop)
-app.mainloop()
+if __name__ == "__main__":
+    event_loop = asyncio.get_event_loop()
+    rp = RoomPicker(event_loop)
+    rp.mainloop()
