@@ -21,7 +21,7 @@ class RoomPicker(customtkinter.CTk):
 
         super().__init__()
 
-        self.title("SCH - Room Picker")
+        self.title(f"SCH - Room Picker ({read_config()['server']['version']})")
         self.geometry("350x170")
         self.resizable(False, False)
         self.iconbitmap(read_config()["client"]["icon_path"])

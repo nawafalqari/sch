@@ -10,7 +10,7 @@ class Settings(customtkinter.CTkToplevel):
 
         self.config = read_config()
 
-        self.title("SCH - Settings")
+        self.title(f"SCH - Settings ({self.config['server']['version']})")
         self.geometry("300x250")
         self.resizable(False, False)
         self.after(250, lambda: self.iconbitmap(self.config['client']['icon_path']))
