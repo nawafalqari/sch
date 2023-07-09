@@ -12,7 +12,7 @@ async def connection_handler(ws: WebSocket, sysdata: dict = {}):
 
             match data["type"]:
                 case "room_join":
-                    if data["version"] != sysdata.get("version"):
+                    if data.get("version") != sysdata.get("version"):
                         await ws.send_json(SystemExit(f"version mismatch, please install SCH version {sysdata['version']}").to_dict())
                         await ws.close()
                         return
