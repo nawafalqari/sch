@@ -34,10 +34,13 @@ python sch.py
 2. Extract the contents of the zipped file.
 3. Run the `sch.exe` executable file to launch the SCH application.
 
+## Community Projects
+- Special thanks to **[Khayal](github.com/khayal-Dev)** for making the **[sch.nawafdev.com](https://sch.nawafdev.com)** website - https://github.com/Khayal-Dev/SCH-Website
+- [SCH Terminal by Yhya](https://github.com/yhyadev/sch-terminal/)
+
 <!-- ## Contributing
 
 We welcome contributions from the open-source community to help improve SCH. If you're interested in contributing, please follow our [contribution guidelines](CONTRIBUTING.md) to get started. -->
-
 
 ## Contact
 
