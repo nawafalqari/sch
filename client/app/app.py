@@ -52,7 +52,8 @@ class App(customtkinter.CTk):
 
         self.msg_input.delete(0, tk.END)
 
-        message = encrypt(text, self.secret_key).decode("utf-8")
+        # encrypt the message if it's not a command
+        message = text if text.startswith("/") else encrypt(text, self.secret_key).decode("utf-8")
         await server.server.send(json.dumps({
             "type": "message",
             "content": message,
