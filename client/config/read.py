@@ -17,14 +17,12 @@ def check_config():
         write_default()
         return
 
-    if not config["server"].get("host"):
-        update_config(server={"host": default_data["server"]["host"]})
-    if not config["server"].get("version"):
-        update_config(server={"version": default_data["server"]["version"]})
-    if not config["client"].get("icon_path"):
-        update_config(client={"icon_path": default_data["client"]["icon_path"]})
-    if not config["client"].get("theme"):
-        update_config(client={"theme": default_data["client"]["theme"]})
-
+    for key in default_data["server"]:
+        if key not in config["server"]:
+            update_config(server={key: default_data["server"][key]})
+    for key in default_data["client"]:
+        if key not in config["client"]:
+            update_config(client={key: default_data["client"][key]})
+            
     if config["server"]["version"] != default_data["server"]["version"]:
         update_config(server={"version": default_data["server"]["version"]})

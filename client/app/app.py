@@ -8,6 +8,7 @@ import threading
 from ..comm import server
 from ..config import read_config
 from ..encryption import encrypt, decrypt
+from ..notifications import notify
 
 class App(customtkinter.CTk):
     def __init__(self, loop: asyncio.AbstractEventLoop, room_code: str):
@@ -74,11 +75,17 @@ class App(customtkinter.CTk):
                         msg_widget.pack(anchor=tk.W)
 
                         self.messages_frame._parent_canvas.yview("scroll", int(2500 / 6), "units")
+
+                        if read_config()["client"]["notifications"] == "True":
+                            notify(message, self.room_code)
                     case "system":
                         msg_widget = customtkinter.CTkLabel(self.messages_frame, text=data["content"], wraplength=330, text_color="lightblue")
                         msg_widget.pack(anchor=tk.W)
 
                         self.messages_frame._parent_canvas.yview("scroll", int(2500 / 6), "units")
+
+                        if read_config()["client"]["notifications"] == "True":
+                            notify(data["content"], self.room_code)
                     case "system.action":
                         match data["action"]:
                             case "setup":

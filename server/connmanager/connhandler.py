@@ -2,7 +2,6 @@ from fastapi import WebSocket, WebSocketDisconnect
 from ..rooms import rooms
 from ..response import Message, System, SystemAction, SystemExit
 from ..cmd import commands
-from ..encryption import decrypt
 
 async def connection_handler(ws: WebSocket, sysdata: dict = {}):
     try:

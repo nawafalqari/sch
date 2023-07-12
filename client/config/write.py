@@ -7,6 +7,7 @@ default_data = {
     },
     "client": {
         "icon_path": "icon.ico",
+        "notifications": "False",
         "theme": "SCH"
     }
 }
