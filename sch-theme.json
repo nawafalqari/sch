@@ -42,21 +42,21 @@
         "text_color": ["#272A2A", "#181A1C"],
         "text_color_disabled": ["gray74", "gray60"]
     },
+    "CTkCheckBox": {
+      "corner_radius": 6,
+      "border_width": 3,
+      "fg_color": ["#F2F3F5", "#E2E4E8"],
+      "border_color": ["#979DA2", "#565B5E"],
+      "hover_color": ["#C6CACF", "#A8AEB2"],
+      "checkmark_color": ["#272A2A", "#181A1C"],
+      "text_color": ["gray14", "gray84"],
+      "text_color_disabled": ["gray60", "gray45"]
+    },
 
 
 
 
     
-    "CTkCheckBox": {
-      "corner_radius": 6,
-      "border_width": 3,
-      "fg_color": ["#3a7ebf", "#1f538d"],
-      "border_color": ["#3E454A", "#949A9F"],
-      "hover_color": ["#325882", "#14375e"],
-      "checkmark_color": ["#DCE4EE", "gray90"],
-      "text_color": ["gray14", "gray84"],
-      "text_color_disabled": ["gray60", "gray45"]
-    },
     "CTkSwitch": {
       "corner_radius": 1000,
       "border_width": 3,
