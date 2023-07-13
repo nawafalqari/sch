@@ -3,7 +3,7 @@ import configparser
 default_data = {
     "server": {
         "host": "ws://sch.nawafdev.com/ws",
-        "version": "1.0.0-beta3"
+        "version": "1.0.0-beta4"
     },
     "client": {
         "icon_path": "icon.ico",
